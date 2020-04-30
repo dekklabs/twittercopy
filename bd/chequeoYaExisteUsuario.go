@@ -27,5 +27,6 @@ func ChequeoYaExisteUsuario(email string) (models.Usuario, bool, string) {
 	if err != nil {
 		return resultado, false, ID
 	}
+
 	return resultado, true, ID
 }
