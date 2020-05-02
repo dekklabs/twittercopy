@@ -11,7 +11,7 @@ import (
 //MongoCN es el objeto de conexion
 var MongoCN = ConectarDB()
 
-var clientOptions = options.Client().ApplyURI("mongodb+srv://dekk:o7IiXX85wDaSYYnp@cluster0-dyh3o.mongodb.net/twittor")
+var clientOptions = options.Client().ApplyURI("mongodb+srv://dekk:hOGgw86asuE1BvRx@cluster0-dyh3o.mongodb.net/test?retryWrites=true&w=majority")
 
 // var clientOptions = options.Client().ApplyURI("mongodb://localhost:27017/twittor")
 
