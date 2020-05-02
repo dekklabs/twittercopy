@@ -7,19 +7,16 @@ import (
 
 //IntentoLogin realiza el chequeo de login a la DB
 func IntentoLogin(email string, password string) (models.Usuario, bool) {
-	user, encontrado, _ := ChequeoYaExisteUsuario(email)
+	usu, encontrado, _ := ChequeoYaExisteUsuario(email)
 	if encontrado == false {
-		return user, false
+		return usu, false
 	}
 
 	passwordBytes := []byte(password)
-	passwordDB := []byte(user.Password)
-
-	err := bcrypt.CompareHashAndPassword(passwordDB, passwordBytes)
-
+	passwordBD := []byte(usu.Password)
+	err := bcrypt.CompareHashAndPassword(passwordBD, passwordBytes)
 	if err != nil {
-		return user, false
+		return usu, false
 	}
-
-	return user, true
+	return usu, true
 }

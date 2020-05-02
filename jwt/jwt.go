@@ -8,9 +8,9 @@ import (
 )
 
 func GeneroJWT(t models.Usuario) (string, error) {
-	miClave := []byte("MastersDelDesarrollo_grupodeFacebook")
 
-	//Lista de privilegios
+	miClave := []byte("MastersdelDesarrollo_grupodeFacebook")
+
 	payload := jwt.MapClaims{
 		"email":            t.Email,
 		"nombre":           t.Nombre,
@@ -28,6 +28,5 @@ func GeneroJWT(t models.Usuario) (string, error) {
 	if err != nil {
 		return tokenStr, err
 	}
-
 	return tokenStr, nil
 }

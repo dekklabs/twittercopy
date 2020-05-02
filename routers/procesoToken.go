@@ -17,7 +17,7 @@ var IDusuario string
 
 //ProcesoToken proceso token para extraer sus valores
 func ProcesoToken(tk string) (*models.Claim, bool, string, error) {
-	miClave := []byte("MastersDelDesarrollo_grupodeFacebook")
+	miClave := []byte("MastersdelDesarrollo_grupodeFacebook")
 	claims := &models.Claim{}
 
 	//token que viene del header viene con una palábra bearer
