@@ -10,7 +10,7 @@ import (
 
 //LeoTweetsSeguidores lee los tweets de todos nuestros seguidores
 func LeoTweetsSeguidores(w http.ResponseWriter, r *http.Request) {
-	if len(r.URL.Query().Get("pagina") < 1) {
+	if len(r.URL.Query().Get("pagina")) < 1 {
 		http.Error(w, "Debe enviar el parámetro página", http.StatusBadRequest)
 		return
 	}
