@@ -1,3 +1,3 @@
 # Copy Twitter
 - Compile
---go build main.go
+-- go build main.go
