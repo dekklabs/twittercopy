@@ -14,13 +14,12 @@ func LeoTweetsSeguidores(ID string, pagina int) ([]models.DevuelvoTweetsSeguidor
 	defer cancel()
 
 	db := MongoCN.Database("twittor")
-	col := db.Collection("relaciones")
+	col := db.Collection("relacion")
 
 	skip := (pagina - 1) * 20
 
 	condiciones := make([]bson.M, 0)
 
-	//$match
 	condiciones = append(condiciones, bson.M{"$match": bson.M{"usuarioid": ID}})
 	condiciones = append(condiciones, bson.M{
 		"$lookup": bson.M{
@@ -29,23 +28,16 @@ func LeoTweetsSeguidores(ID string, pagina int) ([]models.DevuelvoTweetsSeguidor
 			"foreignField": "userid",
 			"as":           "tweet",
 		}})
-
 	condiciones = append(condiciones, bson.M{"$unwind": "$tweet"})
-	//Datos ordenados $sort de forma descendente
-	condiciones = append(condiciones, bson.M{"$sort": bson.M{"fecha": -1}})
-	//Saltar
+	condiciones = append(condiciones, bson.M{"$sort": bson.M{"tweet.fecha": -1}})
 	condiciones = append(condiciones, bson.M{"$skip": skip})
 	condiciones = append(condiciones, bson.M{"$limit": 20})
 
 	cursor, err := col.Aggregate(ctx, condiciones)
-
-	var results []models.DevuelvoTweetsSeguidores
-
-	err = cursor.All(ctx, &results)
-
+	var result []models.DevuelvoTweetsSeguidores
+	err = cursor.All(ctx, &result)
 	if err != nil {
-		return results, false
+		return result, false
 	}
-
-	return results, true
+	return result, true
 }

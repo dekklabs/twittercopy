@@ -21,7 +21,7 @@ func LeoUsariosTodos(ID string, page int64, search string, tipo string) ([]*mode
 	var results []*models.Usuario
 
 	findOptions := options.Find()
-	findOptions.SetLimit(20)
+	// findOptions.SetLimit(20)
 	findOptions.SetSkip((page - 1) * 20)
 	findOptions.SetLimit(20)
 
